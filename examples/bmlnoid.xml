@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Required timing:
+none
+
+Constraints:
+none
+
+Tested in: test.bml.TestScheduler
+
+Expected behavior:
+Exception feedback, drop BML block
+-->
+<bml xmlns="http://www.bml-initiative.org/bml/bml-1.0">
+</bml>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Required timing:
+speech1:start = 6
+-->
+<bml xmlns="http://www.bml-initiative.org/bml/bml-1.0" id="bml1">
+	<speech id="speech1" start="6"><text>This is a complete <sync id="syncstart1"/>BML 1.0 speech specification</text></speech>		
+</bml>

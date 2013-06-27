@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<bml 	xmlns="http://www.bml-initiative.org/bml/bml-1.0" id="bml1">
+	<faceLexeme id="face1" amount="1.0" lexeme="RAISE_BROWS"/>
+</bml>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.bml-initiative.org/bml/coreextensions-1.0" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ext="http://www.bml-initiative.org/bml/coreextensions-1.0" xmlns:Q1="http://www.bml-initiative.org/bml/bml-1.0">
+    <import schemaLocation="bml-1.0.xsd" namespace="http://www.bml-initiative.org/bml/bml-1.0"></import>
+    <complexType name="NewComplexType">
+    	<complexContent>
+    		<extension base="Q1:faceType">
+    			<attribute name="overShoot" type="float" default="0.0"></attribute>
+    		</extension>
+    	</complexContent>
+    </complexType>
+</schema>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bml 	xmlns="http://www.bml-initiative.org/bml/bml-1.0" 
+			characterId="Alice"
+			id="bml1">
+	<gesture id="bml1:behavior1" lexeme="hello-waving"/>			
+</bml>

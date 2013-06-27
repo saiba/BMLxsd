@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bml 	xmlns="http://www.bml-initiative.org/bml/bml-1.0" 
+			id="bml1"
+			characterId="Alice">
+	<headDirectionShift id="behavior1" target="target1"/>
+</bml>
