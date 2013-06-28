@@ -3,7 +3,8 @@
 			xmlns:xs="http://www.w3.org/2001/XMLSchema" 
 			xmlns="http://www.bml-initiative.org/bml/bml-1.0" 
 			elementFormDefault="qualified">
-
+    
+    
     <xs:element name="bml">
 	    <xs:complexType>
 	    	<xs:annotation>
@@ -18,9 +19,33 @@
 	    		</xs:documentation>
 	    	</xs:annotation>
 	    	<xs:choice minOccurs="1" maxOccurs="unbounded">
+	    	  <xs:element name="required" type="requiredType" minOccurs="0"
+	    			maxOccurs="unbounded"/>
+          <xs:group ref="behaviors" minOccurs="1" maxOccurs="unbounded"/>
+	    	</xs:choice>
+	    	<xs:attribute name="id" type="xs:ID" use="required">
+	    		<xs:annotation>
+	    			<xs:documentation>A reference towards the controlled character</xs:documentation>
+	    		</xs:annotation></xs:attribute>
+	    	<xs:attribute name="characterId" type="targetID">
+	    		<xs:annotation>
+	    			<xs:documentation>Unique ID that allows referencing to a particular bml block. The id 'bml' is reserved.</xs:documentation>
+	    		</xs:annotation></xs:attribute>
+	    	<xs:attribute name="composition" type="openSetItem" default="MERGE">
+	    		<xs:annotation>
+	    			<xs:documentation>One among [MERGE,APPEND,REPLACE], defines the composition policy to apply if the current bml block overlaps with previous bml blocks (see below).</xs:documentation>
+	    		</xs:annotation></xs:attribute>
+	    </xs:complexType>
+    </xs:element>
+    
+    <xs:group name="behaviors">
+      <xs:choice>
           <xs:element name="constraint" type="constraintType" minOccurs="0"
 	    			maxOccurs="unbounded"/>
 	    		<xs:element name="gaze" type="gazeType" minOccurs="0"
+	    			maxOccurs="unbounded">
+	    		</xs:element>
+	    		<xs:element name="wait" type="waitType" minOccurs="0"
 	    			maxOccurs="unbounded">
 	    		</xs:element>
 	    		<xs:element name="headOrientation"
@@ -58,21 +83,13 @@
 	    		<xs:element name="headDirectionShift"
 	    			type="headDirectionShiftType" minOccurs="0" maxOccurs="unbounded">
 	    		</xs:element>
-	    	</xs:choice>
-	    	<xs:attribute name="id" type="xs:ID" use="required">
-	    		<xs:annotation>
-	    			<xs:documentation>A reference towards the controlled character</xs:documentation>
-	    		</xs:annotation></xs:attribute>
-	    	<xs:attribute name="characterId" type="targetID">
-	    		<xs:annotation>
-	    			<xs:documentation>Unique ID that allows referencing to a particular bml block. The id 'bml' is reserved.</xs:documentation>
-	    		</xs:annotation></xs:attribute>
-	    	<xs:attribute name="composition" type="openSetItem" default="MERGE">
-	    		<xs:annotation>
-	    			<xs:documentation>One among [MERGE,APPEND,REPLACE], defines the composition policy to apply if the current bml block overlaps with previous bml blocks (see below).</xs:documentation>
-	    		</xs:annotation></xs:attribute>
-	    </xs:complexType>
-    </xs:element>
+	    		</xs:choice>
+    </xs:group>
+    
+    <xs:complexType name="requiredType">      
+          <xs:group ref="behaviors"/>	     
+    </xs:complexType>
+    
     <xs:complexType name="behaviorType" abstract="true" mixed="false">
     	<xs:attribute name="id" type="xs:string" use="required" />
 
@@ -121,7 +138,7 @@
     <xs:complexType name="beforeType">
       
       <xs:complexContent>
-        <xs:extension base="behaviorType">  
+        <xs:extension base="synchronizeType">  
           <xs:attribute name="ref" type="xs:string"/>
         </xs:extension>
       </xs:complexContent>      
@@ -139,6 +156,14 @@
         <xs:attribute name="ref" type="xs:string" />
     </xs:complexType>
     
+    <xs:complexType name="waitType">
+      <xs:complexContent>
+    		<xs:extension base="behaviorType">
+    		  <xs:attribute name="duration" type="xs:float"/>
+    		</xs:extension>
+    	</xs:complexContent>
+    </xs:complexType>
+      
     <xs:complexType name="gazeType">
     	<xs:complexContent>
     		<xs:extension base="behaviorType">
